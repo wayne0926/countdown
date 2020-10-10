@@ -7,6 +7,14 @@
     <title>人生倒计时 - WR</title><!-- 标题 -->
     <link rel="icon" href="../favicon.ico" type="image/x-icon"><!-- 图标 -->
     <script>
+        // 近期考试时间
+        var str = "2020/10/9 08:30:00";
+        //期末考试时间
+        var strq = "2021/2/1 08:30:00";
+        //中考时间
+        var strz = "2022/6/15 08:30:00";
+        //高考时间
+        var str = "2025/6/7 09:00:00";
         /* 脚本 */
         /* 开始执行（带重复时间） */
         function countTime() {
@@ -14,19 +22,15 @@
             var date = new Date();
             var now = date.getTime();
             //设置截止时间（近期）
-            var str = "2020/7/1 08:30:00";
             var endDate = new Date(str);
             var end = endDate.getTime();
             //设置截止时间（期末）
-            var strq = "2020/7/1 08:30:00";
             var endDate = new Date(strq);
             var endq = endDate.getTime();
             //设置截止时间（中考）
-            var strz = "2022/6/15 08:30:00";
             var endDate = new Date(strz);
             var endz = endDate.getTime();
             //设置截止时间（高考）
-            var str = "2025/6/7 09:00:00";
             var endDate = new Date(str);
             var endg = endDate.getTime();
 
