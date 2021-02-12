@@ -218,29 +218,6 @@
                 }
             }
             /* 现在时间 */
-            setInterval(function () {
-                //星期时间格式转换
-                if (day = "1") {
-                    day2 = "一"
-                }
-                if (day = "2") {
-                    day2 = "二"
-                }
-                if (day = "3") {
-                    day2 = "三"
-                }
-                if (day = "4") {
-                    day2 = "四"
-                }
-                if (day = "5") {
-                    day2 = "五"
-                }
-                if (day = "6") {
-                    day2 = "六"
-                }
-                if (day = "7") {
-                    day2 = "日"
-                }
                 //当前时间获取
                 var date = new Date();
                 var year = date.getFullYear(); //获取当前年份   
@@ -251,6 +228,29 @@
                 var m = date.getMinutes(); //获取分钟   
                 var s = date.getSeconds(); //获取秒   
                 var d = document.getElementById('time-now');
+                setInterval(function () {
+                //星期时间格式转换
+                if (day == "1") {
+                    day2 = "一"
+                }
+                if (day == "2") {
+                    day2 = "二"
+                }
+                if (day == "3") {
+                    day2 = "三"
+                }
+                if (day == "4") {
+                    day2 = "四"
+                }
+                if (day == "5") {
+                    day2 = "五"
+                }
+                if (day == "6") {
+                    day2 = "六"
+                }
+                if (day == "7") {
+                    day2 = "日"
+                }
                 //时间开头加零
                 if (s < 10) {
                     s2 = "0" + s;
