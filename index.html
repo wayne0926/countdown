@@ -218,6 +218,7 @@
                 }
             }
             /* 现在时间 */
+                setInterval(function () {
                 //当前时间获取
                 var date = new Date();
                 var year = date.getFullYear(); //获取当前年份   
@@ -228,7 +229,6 @@
                 var m = date.getMinutes(); //获取分钟   
                 var s = date.getSeconds(); //获取秒   
                 var d = document.getElementById('time-now');
-                setInterval(function () {
                 //星期时间格式转换
                 if (day == "1") {
                     day2 = "一"
