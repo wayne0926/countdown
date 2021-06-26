@@ -304,7 +304,7 @@
                 console.error(err);
             })
 
-        function tip() { //点击倒计时框提示
+        function tip(data) { //点击倒计时框提示
             //一言API每次点击重新获取
             fetch('https://v1.hitokoto.cn?c=f&c=i&c=k')
                 .then(function (res) {
@@ -318,7 +318,11 @@
                     console.error(err);
                 })
             //提示内容
-            alert(d + "！" + "\n以梦为马，不负韶华!" + "\n \n 『" + hitokoto.innerText + "』" +  "\n 近期：" + str);
+            function aaa (timethen){alert(d + "！" + "\n以梦为马，不负韶华!" + "\n \n 『" + hitokoto.innerText + "』" +  "\n 时间：" + timethen);}
+            if(data.name=="d"){let timethen = str; aaa(timethen)}
+            if(data.name=="q"){let timethen = strq; aaa(timethen)}
+            if(data.name=="z"){let timethen = strz; aaa(timethen)}
+            if(data.name=="g"){let timethen = strg; aaa(timethen)}          
         }
 
         function nowtip() { //点击现在时间框提示
@@ -572,10 +576,10 @@
     </div>
     <!-- 近期倒计时 -->
     <div class="time-yk" id="timeyk">
-        <b><span id="_d" onclick="tip()">加载中...</span></b>
-        <b><span id="_h" onclick="tip()"></span></b>
-        <b><span id="_m" onclick="tip()"></span></b>
-        <b><span id="_s" onclick="tip()"></span></b>
+        <b><span id="_d" onclick="tip(this.dataset)" data-name="d">加载中...</span></b>
+        <b><span id="_h" onclick="tip(this.dataset)" data-name="d"></span></b>
+        <b><span id="_m" onclick="tip(this.dataset)" data-name="d"></span></b>
+        <b><span id="_s" onclick="tip(this.dataset)" data-name="d"></span></b>
     </div>
     <div class="time" id="time">
         <b><span class="desc-qm" id="qimo">期末倒计时</span></b>
@@ -583,21 +587,21 @@
         <b><span class="desc-gk" id="gaokao">高考倒计时</span><br></b>
         <!-- 期末倒计时 -->
         <div class="time-qm" id="timeqm">
-            <b><span id="q_d" onclick="tip()">加载中...</span></b>
+            <b><span id="q_d" onclick="tip(this.dataset)" data-name="q">加载中...</span></b>
             <!-- <b><span id="q_h" onclick="tip()">加载中...</span></b>
         <b><span id="q_m" onclick="tip()">加载中...</span></b>
         <b><span id="q_s" onclick="tip()">加载中...</span></b> -->
         </div>
         <!-- 中考倒计时 -->
         <div class="time-zk" id="timezk">
-            <b><span id="z_d" onclick="tip()">加载中...</span></b>
+            <b><span id="z_d" onclick="tip(this.dataset)" data-name="z">加载中...</span></b>
             <!-- <b><span id="z_h" onclick="tip()">加载中...</span></b>
         <b><span id="z_m" onclick="tip()">加载中...</span></b>
         <b><span id="z_s" onclick="tip()">加载中...</span></b> -->
         </div>
         <!-- 高考倒计时 -->
         <div class="time-gk" id="timegk">
-            <b><span id="g_d" onclick="tip()">加载中...</span></b>
+            <b><span id="g_d" onclick="tip(this.dataset)" data-name="g">加载中...</span></b>
             <!-- <b><span id="g_h" onclick="tip()">加载中...</span></b>
         <b><span id="g_m" onclick="tip()">加载中...</span></b>
         <b><span id="g_s" onclick="tip()">加载中...</span></b> -->
