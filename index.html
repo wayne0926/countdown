@@ -1,613 +1,682 @@
 <!DOCTYPE html>
 <html lang="zh">
-
-<head>
-    <meta charset="UTF-8"><!-- 编码 -->
-    <meta name="author" content="Wei Ran"><!-- 作者 -->
-    <title>人生倒计时 - Wayne</title><!-- 标题 -->
-    <link rel="icon" href="https://cdn.jsdelivr.net/gh/wayne0926/hexo-blog@gh-pages/favicon.ico" type="image/x-icon"><!-- 图标 -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'"> 
+  <head>
+    <meta charset="UTF-8" />
+    <!-- 编码 -->
+    <meta name="author" content="Wei Ran" />
+    <!-- 作者 -->
+    <title>人生倒计时 - Wayne</title>
+    <!-- 标题 -->
+    <link
+      rel="icon"
+      href="https://cdn.jsdelivr.net/gh/wayne0926/hexo-blog@gh-pages/favicon.ico"
+      type="image/x-icon"
+    />
+    <!-- 图标 -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;900&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
     <script>
-        // 近期考试时间
-        var str = "2021/9/28 08:30:00";
-        //期末考试时间
-        var strq = "2021/12/30 08:30:00";
-        //中考时间
-        var strz = "2022/6/15 08:00:00";
-        //高考时间
-        var strg = "2025/6/7 09:00:00"
-        /* 脚本 */
-        /* 开始执行（带重复时间） */
-        function countTime() {
-            //获取当前时间
-            var date = new Date();
-            var now = date.getTime();
-            //设置截止时间（近期）
-            var endDate = new Date(str);
-            var end = endDate.getTime();
-            //设置截止时间（期末）
-            var endDate = new Date(strq);
-            var endq = endDate.getTime();
-            //设置截止时间（中考）
-            var endDate = new Date(strz);
-            var endz = endDate.getTime();
-            //设置截止时间（高考）
-            var endDate = new Date(strg);
-            var endg = endDate.getTime();
+      // 近期考试时间
+      var str = "2021/9/28 08:30:00";
+      //期末考试时间
+      var strq = "2021/12/30 08:30:00";
+      //中考时间
+      var strz = "2022/6/15 08:00:00";
+      //高考时间
+      var strg = "2025/6/7 09:00:00";
+      /* 脚本 */
+      /* 开始执行（带重复时间） */
+      function countTime() {
+        //获取当前时间
+        var date = new Date();
+        var now = date.getTime();
+        //设置截止时间（近期）
+        var endDate = new Date(str);
+        var end = endDate.getTime();
+        //设置截止时间（期末）
+        var endDate = new Date(strq);
+        var endq = endDate.getTime();
+        //设置截止时间（中考）
+        var endDate = new Date(strz);
+        var endz = endDate.getTime();
+        //设置截止时间（高考）
+        var endDate = new Date(strg);
+        var endg = endDate.getTime();
 
-            //时间差
-            var leftTime = end - now; /* 近期 */
-            var leftTimeq = endq - now; /* 期末 */
-            var leftTimez = endz - now; /* 中考 */
-            var leftTimeg = endg - now; /* 高考 */
-            /* 近期 */
-            var d, h, m, s;
-            if (leftTime >= 0) {
-                //运算
-                d = Math.floor(leftTime / 1000 / 60 / 60 / 24);
-                h = Math.floor(leftTime / 1000 / 60 / 60 % 24);
-                m = Math.floor(leftTime / 1000 / 60 % 60);
-                s = Math.floor(leftTime / 1000 % 60);
-                //赋值
-                document.getElementById("_d").innerHTML = d + "天&ensp;";
-                document.getElementById("_h").innerHTML = h + "时&ensp;";
-                document.getElementById("_m").innerHTML = m + "分&ensp;";
-                document.getElementById("_s").innerHTML = s + "秒";
-            }
-            if (leftTime < 0) {
-                //改提示
-                document.getElementById("yuekao").innerHTML = "近期考试"
-                document.getElementById("desc2").innerHTML = "已进行"
-                //运算
-                d = Math.floor(leftTime / 1000 / 60 / 60 / 24);
-                h = Math.floor(leftTime / 1000 / 60 / 60 % 24);
-                m = Math.floor(leftTime / 1000 / 60 % 60);
-                s = Math.floor(leftTime / 1000 % 60);
-                //赋值
-                document.getElementById("_d").innerHTML = -d + "天&ensp;";
-                document.getElementById("_h").innerHTML = -h + "时&ensp;";
-                document.getElementById("_m").innerHTML = -m + "分&ensp;";
-                document.getElementById("_s").innerHTML = -s + "秒";
-            }
-            //时间临近
-            if (d >= 0) {
-                if (d <= 3) {
-                    document.getElementById("timeyk").className = "time-yk2";
-                } else {
-                    document.getElementById("timeyk").className = "time-yk";
-                }
-            }
-            if (d < 0) {
-                if (d >= -3) {
-                    document.getElementById("timeyk").className = "time-yk2";
-                } else {
-                    document.getElementById("timeyk").className = "time-yk";
-                }
-            }
-            /* 期末 */
-            var dq, hq, mq, sq;
-            if (leftTimeq >= 0) {
-                //运算
-                dq = Math.floor(leftTimeq / 1000 / 60 / 60 / 24);
-                hq = Math.floor(leftTimeq / 1000 / 60 / 60 % 24);
-                mq = Math.floor(leftTimeq / 1000 / 60 % 60);
-                sq = Math.floor(leftTimeq / 1000 % 60);
-                //赋值
-                document.getElementById("q_d").innerHTML = dq + "天";
-                /* document.getElementById("q_h").innerHTML = hq + "时，";
+        //时间差
+        var leftTime = end - now; /* 近期 */
+        var leftTimeq = endq - now; /* 期末 */
+        var leftTimez = endz - now; /* 中考 */
+        var leftTimeg = endg - now; /* 高考 */
+        /* 近期 */
+        var d, h, m, s;
+        if (leftTime >= 0) {
+          //运算
+          d = Math.floor(leftTime / 1000 / 60 / 60 / 24);
+          h = Math.floor((leftTime / 1000 / 60 / 60) % 24);
+          m = Math.floor((leftTime / 1000 / 60) % 60);
+          s = Math.floor((leftTime / 1000) % 60);
+          //赋值
+          document.getElementById("_d").innerHTML = d + "天&ensp;";
+          document.getElementById("_h").innerHTML = h + "时&ensp;";
+          document.getElementById("_m").innerHTML = m + "分&ensp;";
+          document.getElementById("_s").innerHTML = s + "秒";
+        }
+        if (leftTime < 0) {
+          //改提示
+          document.getElementById("yuekao").innerHTML = "近期考试";
+          document.getElementById("desc2").innerHTML = "已进行";
+          //运算
+          d = Math.floor(leftTime / 1000 / 60 / 60 / 24);
+          h = Math.floor((leftTime / 1000 / 60 / 60) % 24);
+          m = Math.floor((leftTime / 1000 / 60) % 60);
+          s = Math.floor((leftTime / 1000) % 60);
+          //赋值
+          document.getElementById("_d").innerHTML = -d + "天&ensp;";
+          document.getElementById("_h").innerHTML = -h + "时&ensp;";
+          document.getElementById("_m").innerHTML = -m + "分&ensp;";
+          document.getElementById("_s").innerHTML = -s + "秒";
+        }
+        //时间临近
+        if (d >= 0) {
+          if (d <= 3) {
+            document.getElementById("timeyk").className = "time-yk2";
+          } else {
+            document.getElementById("timeyk").className = "time-yk";
+          }
+        }
+        if (d < 0) {
+          if (d >= -3) {
+            document.getElementById("timeyk").className = "time-yk2";
+          } else {
+            document.getElementById("timeyk").className = "time-yk";
+          }
+        }
+        /* 期末 */
+        var dq, hq, mq, sq;
+        if (leftTimeq >= 0) {
+          //运算
+          dq = Math.floor(leftTimeq / 1000 / 60 / 60 / 24);
+          hq = Math.floor((leftTimeq / 1000 / 60 / 60) % 24);
+          mq = Math.floor((leftTimeq / 1000 / 60) % 60);
+          sq = Math.floor((leftTimeq / 1000) % 60);
+          //赋值
+          document.getElementById("q_d").innerHTML = dq + "天";
+          /* document.getElementById("q_h").innerHTML = hq + "时，";
                 document.getElementById("q_m").innerHTML = mq + "分，";
                 document.getElementById("q_s").innerHTML = sq + "秒"; */
-            }
+        }
 
-            if (leftTimeq < 0) {
-                //改提示
-                document.getElementById("qimo").innerHTML = "期末已进行";
-                //运算
-                dq = Math.floor(leftTimeq / 1000 / 60 / 60 / 24);
-                hq = Math.floor(leftTimeq / 1000 / 60 / 60 % 24);
-                mq = Math.floor(leftTimeq / 1000 / 60 % 60);
-                sq = Math.floor(leftTimeq / 1000 % 60);
-                //赋值
-                document.getElementById("q_d").innerHTML = -dq + "天";
-                /* document.getElementById("q_h").innerHTML = -hq + "时，";
+        if (leftTimeq < 0) {
+          //改提示
+          document.getElementById("qimo").innerHTML = "期末已进行";
+          //运算
+          dq = Math.floor(leftTimeq / 1000 / 60 / 60 / 24);
+          hq = Math.floor((leftTimeq / 1000 / 60 / 60) % 24);
+          mq = Math.floor((leftTimeq / 1000 / 60) % 60);
+          sq = Math.floor((leftTimeq / 1000) % 60);
+          //赋值
+          document.getElementById("q_d").innerHTML = -dq + "天";
+          /* document.getElementById("q_h").innerHTML = -hq + "时，";
                 document.getElementById("q_m").innerHTML = -mq + "分，";
                 document.getElementById("q_s").innerHTML = -sq + "秒"; */
-            }
-            //时间临近
-            if (dq >= 0) {
-                if (dq <= 7) {
-                    document.getElementById("timeqm").className = "time-qm2";
-                } else {
-                    document.getElementById("timeqm").className = "time-qm";
-                }
-            }
-            if (dq < 0) {
-                if (dq >= -3) {
-                    document.getElementById("timeqm").className = "time-qm2";
-                } else {
-                    document.getElementById("timeqm").className = "time-qm";
-                }
-            }
-            /* 中考 */
-            var dz, hz, mz, sz;
-            if (leftTimez >= 0) {
-                //运算
-                dz = Math.floor(leftTimez / 1000 / 60 / 60 / 24);
-                hz = Math.floor(leftTimez / 1000 / 60 / 60 % 24);
-                mz = Math.floor(leftTimez / 1000 / 60 % 60);
-                sz = Math.floor(leftTimez / 1000 % 60);
-                //赋值
-                document.getElementById("z_d").innerHTML = dz + "天";
-                /* document.getElementById("z_h").innerHTML = hz + "时，";
+        }
+        //时间临近
+        if (dq >= 0) {
+          if (dq <= 7) {
+            document.getElementById("timeqm").className = "time-qm2";
+          } else {
+            document.getElementById("timeqm").className = "time-qm";
+          }
+        }
+        if (dq < 0) {
+          if (dq >= -3) {
+            document.getElementById("timeqm").className = "time-qm2";
+          } else {
+            document.getElementById("timeqm").className = "time-qm";
+          }
+        }
+        /* 中考 */
+        var dz, hz, mz, sz;
+        if (leftTimez >= 0) {
+          //运算
+          dz = Math.floor(leftTimez / 1000 / 60 / 60 / 24);
+          hz = Math.floor((leftTimez / 1000 / 60 / 60) % 24);
+          mz = Math.floor((leftTimez / 1000 / 60) % 60);
+          sz = Math.floor((leftTimez / 1000) % 60);
+          //赋值
+          document.getElementById("z_d").innerHTML = dz + "天";
+          /* document.getElementById("z_h").innerHTML = hz + "时，";
                 document.getElementById("z_m").innerHTML = mz + "分，";
                 document.getElementById("z_s").innerHTML = sz + "秒"; */
-
-            }
-            if (leftTimez < 0) {
-                //改提示
-                document.getElementById("zhongkao").innerHTML = "中考已进行";
-                //运算
-                dz = Math.floor(leftTimez / 1000 / 60 / 60 / 24);
-                hz = Math.floor(leftTimez / 1000 / 60 / 60 % 24);
-                mz = Math.floor(leftTimez / 1000 / 60 % 60);
-                sz = Math.floor(leftTimez / 1000 % 60);
-                //赋值
-                document.getElementById("z_d").innerHTML = -dz + "天";
-                /* document.getElementById("z_h").innerHTML = -hz + "时，";
+        }
+        if (leftTimez < 0) {
+          //改提示
+          document.getElementById("zhongkao").innerHTML = "中考已进行";
+          //运算
+          dz = Math.floor(leftTimez / 1000 / 60 / 60 / 24);
+          hz = Math.floor((leftTimez / 1000 / 60 / 60) % 24);
+          mz = Math.floor((leftTimez / 1000 / 60) % 60);
+          sz = Math.floor((leftTimez / 1000) % 60);
+          //赋值
+          document.getElementById("z_d").innerHTML = -dz + "天";
+          /* document.getElementById("z_h").innerHTML = -hz + "时，";
                 document.getElementById("z_m").innerHTML = -mz + "分，";
                 document.getElementById("z_s").innerHTML = -sz + "秒"; */
-
-            }
-            //时间临近
-            if (dz >= 0) {
-                if (dz <= 90) {
-                    document.getElementById("timezk").className = "time-zk2";
-                } else {
-                    document.getElementById("timezk").className = "time-zk";
-                }
-            }
-            if (dz < 0) {
-                if (dz >= -4) {
-                    document.getElementById("timezk").className = "time-zk2";
-                } else {
-                    document.getElementById("timezk").className = "time-zk";
-                }
-            }
-            /* 高考 */
-            var dg, hg, mg, sg;
-            if (leftTimeg >= 0) {
-                //运算
-                dg = Math.floor(leftTimeg / 1000 / 60 / 60 / 24);
-                hg = Math.floor(leftTimeg / 1000 / 60 / 60 % 24);
-                mg = Math.floor(leftTimeg / 1000 / 60 % 60);
-                sg = Math.floor(leftTimeg / 1000 % 60);
-                //赋值
-                document.getElementById("g_d").innerHTML = dg + "天";
-                /* document.getElementById("g_h").innerHTML = hg + "时，";
+        }
+        //时间临近
+        if (dz >= 0) {
+          if (dz <= 90) {
+            document.getElementById("timezk").className = "time-zk2";
+          } else {
+            document.getElementById("timezk").className = "time-zk";
+          }
+        }
+        if (dz < 0) {
+          if (dz >= -4) {
+            document.getElementById("timezk").className = "time-zk2";
+          } else {
+            document.getElementById("timezk").className = "time-zk";
+          }
+        }
+        /* 高考 */
+        var dg, hg, mg, sg;
+        if (leftTimeg >= 0) {
+          //运算
+          dg = Math.floor(leftTimeg / 1000 / 60 / 60 / 24);
+          hg = Math.floor((leftTimeg / 1000 / 60 / 60) % 24);
+          mg = Math.floor((leftTimeg / 1000 / 60) % 60);
+          sg = Math.floor((leftTimeg / 1000) % 60);
+          //赋值
+          document.getElementById("g_d").innerHTML = dg + "天";
+          /* document.getElementById("g_h").innerHTML = hg + "时，";
                 document.getElementById("g_m").innerHTML = mg + "分，";
                 document.getElementById("g_s").innerHTML = sg + "秒"; */
-            }
-            if (leftTimeg < 0) {
-                //改提示
-                document.getElementById("gaokao").innerHTML = "高考已进行";
-                //运算
-                dg = Math.floor(leftTimeg / 1000 / 60 / 60 / 24);
-                hg = Math.floor(leftTimeg / 1000 / 60 / 60 % 24);
-                mg = Math.floor(leftTimeg / 1000 / 60 % 60);
-                sg = Math.floor(leftTimeg / 1000 % 60);
-                //赋值
-                document.getElementById("g_d").innerHTML = -dg + "天";
-                /* document.getElementById("g_h").innerHTML = -hg + "时，";
+        }
+        if (leftTimeg < 0) {
+          //改提示
+          document.getElementById("gaokao").innerHTML = "高考已进行";
+          //运算
+          dg = Math.floor(leftTimeg / 1000 / 60 / 60 / 24);
+          hg = Math.floor((leftTimeg / 1000 / 60 / 60) % 24);
+          mg = Math.floor((leftTimeg / 1000 / 60) % 60);
+          sg = Math.floor((leftTimeg / 1000) % 60);
+          //赋值
+          document.getElementById("g_d").innerHTML = -dg + "天";
+          /* document.getElementById("g_h").innerHTML = -hg + "时，";
                 document.getElementById("g_m").innerHTML = -mg + "分，";
                 document.getElementById("g_s").innerHTML = -sg + "秒"; */
-            }
-            //时间临近
-            if (dg >= 0) {
-                if (dg <= 180) {
-                    document.getElementById("timegk").className = "time-gk2";
-                } else {
-                    document.getElementById("timegk").className = "time-gk";
-                }
-            }
-            if (dg < 0) {
-                if (dg >= -4) {
-                    document.getElementById("timegk").className = "time-gk2";
-                } else {
-                    document.getElementById("timegk").className = "time-gk";
-                }
-            }
-            /* 现在时间 */
-                setInterval(function () {
-                //当前时间获取
-                var date = new Date();
-                var year = date.getFullYear(); //获取当前年份   
-                var mon = date.getMonth() + 1; //获取当前月份   
-                var da = date.getDate(); //获取当前日   
-                var day = date.getDay(); //获取当前星期几  
-                var h = date.getHours(); //获取小时   
-                var m = date.getMinutes(); //获取分钟   
-                var s = date.getSeconds(); //获取秒   
-                var d = document.getElementById('time-now');
-                //星期时间格式转换
-                if (day == "1") {
-                    day2 = "一"
-                }
-                if (day == "2") {
-                    day2 = "二"
-                }
-                if (day == "3") {
-                    day2 = "三"
-                }
-                if (day == "4") {
-                    day2 = "四"
-                }
-                if (day == "5") {
-                    day2 = "五"
-                }
-                if (day == "6") {
-                    day2 = "六"
-                }
-                if (day == "7") {
-                    day2 = "日"
-                }
-                //时间开头加零
-                if (s < 10) {
-                    s2 = "0" + s;
-                } else {
-                    var s2 = s
-                }
-                if (m < 10) {
-                    m2 = "0" + m;
-                } else {
-                    var m2 = m
-                }
-                if (h < 10) {
-                    h2 = "0" + h;
-                } else {
-                    var h2 = h
-                }
-                //赋值
-                d.innerHTML = '<span id="timee-now">' + h2 + ':' + m2 + ':' + s2 + "</span>" + '&ensp;' +
-                    '<span id="tt">' + '星期' + day2 + '&ensp;' + year + '年' + mon + '月' + da + '日' + '</span>';
-            }, 1000)
+        }
+        //时间临近
+        if (dg >= 0) {
+          if (dg <= 180) {
+            document.getElementById("timegk").className = "time-gk2";
+          } else {
+            document.getElementById("timegk").className = "time-gk";
+          }
+        }
+        if (dg < 0) {
+          if (dg >= -4) {
+            document.getElementById("timegk").className = "time-gk2";
+          } else {
+            document.getElementById("timegk").className = "time-gk";
+          }
+        }
+        /* 现在时间 */
+        setInterval(function () {
+          //当前时间获取
+          var date = new Date();
+          var year = date.getFullYear(); //获取当前年份
+          var mon = date.getMonth() + 1; //获取当前月份
+          var da = date.getDate(); //获取当前日
+          var day = date.getDay(); //获取当前星期几
+          var h = date.getHours(); //获取小时
+          var m = date.getMinutes(); //获取分钟
+          var s = date.getSeconds(); //获取秒
+          var d = document.getElementById("time-now");
+          //星期时间格式转换
+          if (day == "1") {
+            day2 = "一";
+          }
+          if (day == "2") {
+            day2 = "二";
+          }
+          if (day == "3") {
+            day2 = "三";
+          }
+          if (day == "4") {
+            day2 = "四";
+          }
+          if (day == "5") {
+            day2 = "五";
+          }
+          if (day == "6") {
+            day2 = "六";
+          }
+          if (day == "7") {
+            day2 = "日";
+          }
+          //时间开头加零
+          if (s < 10) {
+            s2 = "0" + s;
+          } else {
+            var s2 = s;
+          }
+          if (m < 10) {
+            m2 = "0" + m;
+          } else {
+            var m2 = m;
+          }
+          if (h < 10) {
+            h2 = "0" + h;
+          } else {
+            var h2 = h;
+          }
+          //赋值
+          d.innerHTML =
+            '<span id="timee-now">' +
+            h2 +
+            ":" +
+            m2 +
+            ":" +
+            s2 +
+            "</span>" +
+            "&ensp;" +
+            '<span id="tt">' +
+            "星期" +
+            day2 +
+            "&ensp;" +
+            year +
+            "年" +
+            mon +
+            "月" +
+            da +
+            "日" +
+            "</span>";
+        }, 1000);
 
-            //递归每秒调用countTime方法，显示动态时间效果
-            setTimeout(countTime, 1000);
-        }
-        /* 获取现在小时，做提示 */
-        var hour = new Date().getHours() //获取小时数
-        //赋值
-        if (hour < 4) {
-            var d = "夜深了";
-        } else if (hour < 9) {
-            var d = "早上好";
-        } else if (hour < 14) {
-            var d = "中午好"
-        } else if (hour < 18) {
-            var d = "下午好";
-        } else if (hour < 22) {
-            var d = "晚上好";
-        } else if (hour <= 24) {
-            var d = "夜深了";
-        }
-        //通过一言API提前添加语句
-        fetch('https://v1.hitokoto.cn?c=f&c=i&c=k')
-            .then(function (res) {
-                return res.json();
-            })
-            .then(function (data) {
-                var hitokoto = document.getElementById('hitokoto');
-                hitokoto.innerText = data.hitokoto;
-            })
-            .catch(function (err) {
-                console.error(err);
-            })
+        //递归每秒调用countTime方法，显示动态时间效果
+        setTimeout(countTime, 1000);
+      }
+      /* 获取现在小时，做提示 */
+      var hour = new Date().getHours(); //获取小时数
+      //赋值
+      if (hour < 4) {
+        var d = "夜深了";
+      } else if (hour < 9) {
+        var d = "早上好";
+      } else if (hour < 14) {
+        var d = "中午好";
+      } else if (hour < 18) {
+        var d = "下午好";
+      } else if (hour < 22) {
+        var d = "晚上好";
+      } else if (hour <= 24) {
+        var d = "夜深了";
+      }
+      //通过一言API提前添加语句
+      fetch("https://v1.hitokoto.cn?c=f&c=i&c=k")
+        .then(function (res) {
+          return res.json();
+        })
+        .then(function (data) {
+          var hitokoto = document.getElementById("hitokoto");
+          hitokoto.innerText = data.hitokoto;
+        })
+        .catch(function (err) {
+          console.error(err);
+        });
 
-        function tip(data) { //点击倒计时框提示
-            //一言API每次点击重新获取
-            fetch('https://v1.hitokoto.cn?c=f&c=i&c=k')
-                .then(function (res) {
-                    return res.json();
-                })
-                .then(function (data) {
-                    var hitokoto = document.getElementById('hitokoto');
-                    hitokoto.innerText = data.hitokoto;
-                })
-                .catch(function (err) {
-                    console.error(err);
-                })
-            //提示内容
-            function aaa (timethen){alert(d + "！" + "\n以梦为马，不负韶华!" + "\n \n 『" + hitokoto.innerText + "』" +  "\n 时间：" + timethen);}
-            if(data.name=="d"){let timethen = str; aaa(timethen)}
-            if(data.name=="q"){let timethen = strq; aaa(timethen)}
-            if(data.name=="z"){let timethen = strz; aaa(timethen)}
-            if(data.name=="g"){let timethen = strg; aaa(timethen)}          
+      function tip(data) {
+        //点击倒计时框提示
+        //一言API每次点击重新获取
+        fetch("https://v1.hitokoto.cn?c=f&c=i&c=k")
+          .then(function (res) {
+            return res.json();
+          })
+          .then(function (data) {
+            var hitokoto = document.getElementById("hitokoto");
+            hitokoto.innerText = data.hitokoto;
+          })
+          .catch(function (err) {
+            console.error(err);
+          });
+        //提示内容
+        function aaa(timethen) {
+          alert(
+            d +
+              "！" +
+              "\n以梦为马，不负韶华!" +
+              "\n \n 『" +
+              hitokoto.innerText +
+              "』" +
+              "\n 时间：" +
+              timethen
+          );
         }
+        if (data.name == "d") {
+          let timethen = str;
+          aaa(timethen);
+        }
+        if (data.name == "q") {
+          let timethen = strq;
+          aaa(timethen);
+        }
+        if (data.name == "z") {
+          let timethen = strz;
+          aaa(timethen);
+        }
+        if (data.name == "g") {
+          let timethen = strg;
+          aaa(timethen);
+        }
+      }
 
-        function nowtip() { //点击现在时间框提示
-            //一言API每次点击重新获取
-            fetch('https://v1.hitokoto.cn?c=f&c=i&c=k')
-                .then(function (res) {
-                    return res.json();
-                })
-                .then(function (data) {
-                    var hitokoto = document.getElementById('hitokoto');
-                    hitokoto.innerText = data.hitokoto;
-                })
-                .catch(function (err) {
-                    console.error(err);
-                })
-            //提示内容
-            alert(d + "！" + "\n 『" + hitokoto.innerText + "』");
-        }
+      function nowtip() {
+        //点击现在时间框提示
+        //一言API每次点击重新获取
+        fetch("https://v1.hitokoto.cn?c=f&c=i&c=k")
+          .then(function (res) {
+            return res.json();
+          })
+          .then(function (data) {
+            var hitokoto = document.getElementById("hitokoto");
+            hitokoto.innerText = data.hitokoto;
+          })
+          .catch(function (err) {
+            console.error(err);
+          });
+        //提示内容
+        alert(d + "！" + "\n 『" + hitokoto.innerText + "』");
+      }
     </script>
     <style>
-        body {
-            background-color: #17171d;
-            margin: 0;
-            font-family: "Noto Serif SC", sans-serif;
-        }
+      body {
+        background-color: #17171d;
+        margin: 0;
+        font-family: "Noto Serif SC", sans-serif;
+      }
 
-        .time-yk {
-            background-color: #121217;
-            text-align: center;
-            margin: 3% auto;
-            font-size: 40px;
-            width: 700px;
-            border: 5px solid #63636e;
-            border-radius: 80px;
-            /* text-shadow: 2px 2px 20px black; */
-            color: #845dde;
-            /* -webkit-text-stroke:1px #f00; */
-        }
+      .time-yk {
+        background-color: #121217;
+        text-align: center;
+        margin: 3% auto;
+        font-size: 40px;
+        width: 700px;
+        border: 5px solid #63636e;
+        border-radius: 80px;
+        /* text-shadow: 2px 2px 20px black; */
+        color: #845dde;
+        /* -webkit-text-stroke:1px #f00; */
+      }
 
-        .time-yk2 {
-            background-color: #121217;
-            text-align: center;
-            margin: 3% auto;
-            font-size: 40px;
-            width: 700px;
-            border: 5px solid #63636e;
-            border-radius: 80px;
-            /* text-shadow: 2px 2px 20px black; */
-            color: #2997ff;
-            -webkit-text-stroke: 1.3px white;
-            -ms-text-stroke: 1.3px white;
-            -moz-text-stroke: 1.3px white;
-            -o-text-stroke: 1.3px white;
-        }
+      .time-yk2 {
+        background-color: #121217;
+        text-align: center;
+        margin: 3% auto;
+        font-size: 40px;
+        width: 700px;
+        border: 5px solid #63636e;
+        border-radius: 80px;
+        /* text-shadow: 2px 2px 20px black; */
+        color: #2997ff;
+        -webkit-text-stroke: 1.3px white;
+        -ms-text-stroke: 1.3px white;
+        -moz-text-stroke: 1.3px white;
+        -o-text-stroke: 1.3px white;
+      }
 
-        .desc {
-            color: #49b1f5;
-            font-size: 70px;
-            text-align: center;
-            margin: 2% 0 0 0;
-        }
+      .desc {
+        color: #49b1f5;
+        font-size: 70px;
+        text-align: center;
+        margin: 2% 0 0 0;
+      }
 
-        .desc2 {
-            color: #aaaab3;
-            font-size: 30px;
-            /* margin-top: 3px; */
-        }
+      .desc2 {
+        color: #aaaab3;
+        font-size: 30px;
+        /* margin-top: 3px; */
+      }
 
-        #_s {
-            opacity: 0.4;
-        }
+      #_s {
+        opacity: 0.4;
+      }
 
-        #_m {
-            opacity: 0.6;
-        }
+      #_m {
+        opacity: 0.6;
+      }
 
-        #_h {
-            opacity: 0.8;
-        }
+      #_h {
+        opacity: 0.8;
+      }
 
-        #_d {
-            font-size: 50px;
-        }
+      #_d {
+        font-size: 50px;
+      }
 
-        .time-qm {
-            background-color: #121217;
-            text-align: center;
-            margin: 5% 5px;
-            font-size: 40px;
-            width: 250px;
-            border: 5px solid #63636e;
-            border-radius: 80px;
-            /* text-shadow: 2px 2px 20px black; */
-            color: #845dde;
-            float: left;
-        }
+      .time-qm {
+        background-color: #121217;
+        text-align: center;
+        margin: 5% 5px;
+        font-size: 40px;
+        width: 250px;
+        border: 5px solid #63636e;
+        border-radius: 80px;
+        /* text-shadow: 2px 2px 20px black; */
+        color: #845dde;
+        float: left;
+      }
 
-        .time-qm2 {
-            background-color: #121217;
-            text-align: center;
-            margin: 5% 5px;
-            font-size: 40px;
-            width: 250px;
-            border: 5px solid #63636e;
-            border-radius: 80px;
-            /* text-shadow: 2px 2px 20px black; */
-            color: #2997ff;
-            float: left;
-            -webkit-text-stroke: 1.3px white;
-            -ms-text-stroke: 1.3px white;
-            -moz-text-stroke: 1.3px white;
-            -o-text-stroke: 1.3px white;
-        }
+      .time-qm2 {
+        background-color: #121217;
+        text-align: center;
+        margin: 5% 5px;
+        font-size: 40px;
+        width: 250px;
+        border: 5px solid #63636e;
+        border-radius: 80px;
+        /* text-shadow: 2px 2px 20px black; */
+        color: #2997ff;
+        float: left;
+        -webkit-text-stroke: 1.3px white;
+        -ms-text-stroke: 1.3px white;
+        -moz-text-stroke: 1.3px white;
+        -o-text-stroke: 1.3px white;
+      }
 
-        .time-zk {
-            background-color: #121217;
-            text-align: center;
-            margin: 5% 5px;
-            font-size: 40px;
-            font-family: "Noto Serif SC", sans-serif;
-            width: 250px;
-            border: 5px solid #63636e;
-            border-radius: 80px;
-            /* text-shadow: 2px 2px 20px black; */
-            color: #845dde;
-            float: left;
-            margin-bottom: 6%;
-        }
+      .time-zk {
+        background-color: #121217;
+        text-align: center;
+        margin: 5% 5px;
+        font-size: 40px;
+        font-family: "Noto Serif SC", sans-serif;
+        width: 250px;
+        border: 5px solid #63636e;
+        border-radius: 80px;
+        /* text-shadow: 2px 2px 20px black; */
+        color: #845dde;
+        float: left;
+        margin-bottom: 6%;
+      }
 
-        .time-zk2 {
-            background-color: #121217;
-            text-align: center;
-            margin: 5% 5px;
-            font-size: 40px;
-            width: 250px;
-            border: 5px solid #63636e;
-            border-radius: 80px;
-            /* text-shadow: 2px 2px 20px black; */
-            color: #2997ff;
-            float: left;
-            margin-bottom: 6%;
-            -webkit-text-stroke: 1.3px white;
-            -ms-text-stroke: 1.3px white;
-            -moz-text-stroke: 1.3px white;
-            -o-text-stroke: 1.3px white;
-        }
+      .time-zk2 {
+        background-color: #121217;
+        text-align: center;
+        margin: 5% 5px;
+        font-size: 40px;
+        width: 250px;
+        border: 5px solid #63636e;
+        border-radius: 80px;
+        /* text-shadow: 2px 2px 20px black; */
+        color: #2997ff;
+        float: left;
+        margin-bottom: 6%;
+        -webkit-text-stroke: 1.3px white;
+        -ms-text-stroke: 1.3px white;
+        -moz-text-stroke: 1.3px white;
+        -o-text-stroke: 1.3px white;
+      }
 
-        .time {
-            /* float: left; */
-            /* display: none; */
-            width: 810px;
-            height: 150px;
-            margin: 2% auto;
-        }
+      .time {
+        /* float: left; */
+        /* display: none; */
+        width: 810px;
+        height: 150px;
+        margin: 2% auto;
+      }
 
-        .desc-qm {
-            color: #aaaab3;
-            font-size: 30px;
-            text-align: center;
-            margin: 0 0 0 8%;
-        }
+      .desc-qm {
+        color: #aaaab3;
+        font-size: 30px;
+        text-align: center;
+        margin: 0 0 0 8%;
+      }
 
-        .desc-zk {
-            color: #aaaab3;
-            font-size: 30px;
-            text-align: center;
-            margin: 0 0 0 14%;
-        }
+      .desc-zk {
+        color: #aaaab3;
+        font-size: 30px;
+        text-align: center;
+        margin: 0 0 0 14%;
+      }
 
-        .desc-gk {
-            color: #aaaab3;
-            font-size: 30px;
-            text-align: center;
-            margin: 0 0 0 14%;
-        }
+      .desc-gk {
+        color: #aaaab3;
+        font-size: 30px;
+        text-align: center;
+        margin: 0 0 0 14%;
+      }
 
-        .time-gk {
-            background-color: #121217;
-            text-align: center;
-            margin: 5% 5px;
-            font-size: 40px;
-            width: 250px;
-            border: 5px solid #63636e;
-            border-radius: 80px;
-            /* text-shadow: 2px 2px 20px black; */
-            color: #845dde;
-            float: left;
-        }
+      .time-gk {
+        background-color: #121217;
+        text-align: center;
+        margin: 5% 5px;
+        font-size: 40px;
+        width: 250px;
+        border: 5px solid #63636e;
+        border-radius: 80px;
+        /* text-shadow: 2px 2px 20px black; */
+        color: #845dde;
+        float: left;
+      }
 
-        .time-gk2 {
-            background-color: #121217;
-            text-align: center;
-            margin: 5% 5px;
-            font-size: 40px;
-            width: 250px;
-            border: 5px solid #63636e;
-            border-radius: 80px;
-            /* text-shadow: 2px 2px 20px black; */
-            color: #2997ff;
-            float: left;
-            -webkit-text-stroke: 1.3px white;
-            -ms-text-stroke: 1.3px white;
-            -moz-text-stroke: 1.3px white;
-            -o-text-stroke: 1.3px white;
-        }
+      .time-gk2 {
+        background-color: #121217;
+        text-align: center;
+        margin: 5% 5px;
+        font-size: 40px;
+        width: 250px;
+        border: 5px solid #63636e;
+        border-radius: 80px;
+        /* text-shadow: 2px 2px 20px black; */
+        color: #2997ff;
+        float: left;
+        -webkit-text-stroke: 1.3px white;
+        -ms-text-stroke: 1.3px white;
+        -moz-text-stroke: 1.3px white;
+        -o-text-stroke: 1.3px white;
+      }
 
-        .time-now {
-            background-color: #121217;
-            text-align: center;
-            margin: 0 auto;
-            font-size: 25px;
-            width: 520px;
-            border: 5px solid #63636e;
-            border-top: none;
-            border-radius: 0px 0px 60px 60px;
-            /* text-shadow: 2px 2px 20px black; */
-            color: #845dde;
-            /* float: left; */
-            font-weight: 100;
-        }
+      .time-now {
+        background-color: #121217;
+        text-align: center;
+        margin: 0 auto;
+        font-size: 25px;
+        width: 520px;
+        border: 5px solid #63636e;
+        border-top: none;
+        border-radius: 0px 0px 60px 60px;
+        /* text-shadow: 2px 2px 20px black; */
+        color: #845dde;
+        /* float: left; */
+        font-weight: 100;
+      }
 
-        .desc-now {
-            color: #aaaab3;
-            font-size: 30px;
-            text-align: center;
-            margin: 0 0 0 43%;
-        }
+      .desc-now {
+        color: #aaaab3;
+        font-size: 30px;
+        text-align: center;
+        margin: 0 0 0 43%;
+      }
 
-        #timee-now {
-            font-weight: 600;
-            font-size: 40px;
-        }
+      #timee-now {
+        font-weight: 600;
+        font-size: 40px;
+      }
 
-        #yuekao {
-            color: #49b1f5;
-        }
+      #yuekao {
+        color: #49b1f5;
+      }
     </style>
-</head>
+  </head>
 
-<body onload="countTime()" id="body">
+  <body onload="countTime()" id="body">
     <!-- 现在时间 -->
     <div class="time-now">
-        <span id="time-now" onclick="nowtip()">加载中...</span><br>
-        <span id="hitokoto" style="display: none;"></span>
-    </div><br>
+      <span id="time-now" onclick="nowtip()">加载中...</span><br />
+      <span id="hitokoto" style="display: none"></span>
+    </div>
+    <br />
     <!-- 主体部分描述 -->
     <div class="desc">
-        <b><span id="yuekao">近期考试</span><br>
-            <span class="desc2" id="desc2">倒计时</span></b>
-
+      <b
+        ><span id="yuekao">近期考试</span><br />
+        <span class="desc2" id="desc2">倒计时</span></b
+      >
     </div>
     <!-- 近期倒计时 -->
     <div class="time-yk" id="timeyk">
-        <b><span id="_d" onclick="tip(this.dataset)" data-name="d">加载中...</span></b>
-        <b><span id="_h" onclick="tip(this.dataset)" data-name="d"></span></b>
-        <b><span id="_m" onclick="tip(this.dataset)" data-name="d"></span></b>
-        <b><span id="_s" onclick="tip(this.dataset)" data-name="d"></span></b>
+      <b
+        ><span id="_d" onclick="tip(this.dataset)" data-name="d"
+          >加载中...</span
+        ></b
+      >
+      <b><span id="_h" onclick="tip(this.dataset)" data-name="d"></span></b>
+      <b><span id="_m" onclick="tip(this.dataset)" data-name="d"></span></b>
+      <b><span id="_s" onclick="tip(this.dataset)" data-name="d"></span></b>
     </div>
     <div class="time" id="time">
-        <b><span class="desc-qm" id="qimo">期末倒计时</span></b>
-        <b><span class="desc-zk" id="zhongkao">中考倒计时</span></b>
-        <b><span class="desc-gk" id="gaokao">高考倒计时</span><br></b>
-        <!-- 期末倒计时 -->
-        <div class="time-qm" id="timeqm">
-            <b><span id="q_d" onclick="tip(this.dataset)" data-name="q">加载中...</span></b>
-            <!-- <b><span id="q_h" onclick="tip()">加载中...</span></b>
+      <b><span class="desc-qm" id="qimo">期末倒计时</span></b>
+      <b><span class="desc-zk" id="zhongkao">中考倒计时</span></b>
+      <b><span class="desc-gk" id="gaokao">高考倒计时</span><br /></b>
+      <!-- 期末倒计时 -->
+      <div class="time-qm" id="timeqm">
+        <b
+          ><span id="q_d" onclick="tip(this.dataset)" data-name="q"
+            >加载中...</span
+          ></b
+        >
+        <!-- <b><span id="q_h" onclick="tip()">加载中...</span></b>
         <b><span id="q_m" onclick="tip()">加载中...</span></b>
         <b><span id="q_s" onclick="tip()">加载中...</span></b> -->
-        </div>
-        <!-- 中考倒计时 -->
-        <div class="time-zk" id="timezk">
-            <b><span id="z_d" onclick="tip(this.dataset)" data-name="z">加载中...</span></b>
-            <!-- <b><span id="z_h" onclick="tip()">加载中...</span></b>
+      </div>
+      <!-- 中考倒计时 -->
+      <div class="time-zk" id="timezk">
+        <b
+          ><span id="z_d" onclick="tip(this.dataset)" data-name="z"
+            >加载中...</span
+          ></b
+        >
+        <!-- <b><span id="z_h" onclick="tip()">加载中...</span></b>
         <b><span id="z_m" onclick="tip()">加载中...</span></b>
         <b><span id="z_s" onclick="tip()">加载中...</span></b> -->
-        </div>
-        <!-- 高考倒计时 -->
-        <div class="time-gk" id="timegk">
-            <b><span id="g_d" onclick="tip(this.dataset)" data-name="g">加载中...</span></b>
-            <!-- <b><span id="g_h" onclick="tip()">加载中...</span></b>
+      </div>
+      <!-- 高考倒计时 -->
+      <div class="time-gk" id="timegk">
+        <b
+          ><span id="g_d" onclick="tip(this.dataset)" data-name="g"
+            >加载中...</span
+          ></b
+        >
+        <!-- <b><span id="g_h" onclick="tip()">加载中...</span></b>
         <b><span id="g_m" onclick="tip()">加载中...</span></b>
         <b><span id="g_s" onclick="tip()">加载中...</span></b> -->
-        </div>
-
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
